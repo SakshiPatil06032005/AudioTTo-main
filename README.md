@@ -9,14 +9,9 @@
 </p>
 
 <p align="center">
-  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.12+-blue.svg?style=flat&logo=python&logoColor=white" alt="Python 3.12+"></a>
   <a href="https://github.com/guillaumekln/faster-whisper"><img src="https://img.shields.io/badge/Transcribed%20by-Faster--Whisper-green" alt="Faster-Whisper"></a>
   <a href="https://deepmind.google/technologies/gemini/"><img src="https://img.shields.io/badge/AI-Gemini-orange" alt="Gemini AI"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-purple.svg" alt="License: MIT"></a>
-</p>
-
-<p align="center">
-  <a href="https://www.paypal.com/paypalme/Emarzone"><img src="https://img.shields.io/badge/Donate-PayPal-blue.svg?logo=paypal&style=for-the-badge" alt="Donate with PayPal"></a>
 </p>
 
 <p align="center">
@@ -37,16 +32,7 @@
 - 🖼️ **Visual Integration**: Extracts images from PDF slides and embeds them directly into the notes where relevant.
 - 🚀 **Modern UI**: Includes a user-friendly web interface for easy drag-and-drop operation.
 
----
 
-
-## 🎥 Tutorial
-
-<div align="center">
-  <video src="https://github.com/user-attachments/assets/4d3cab13-9cc4-4f90-8ee9-5fe8dbe2b6e4" width="600" controls>
-    Il tuo browser non supporta il tag video.
-  </video>
-</div>
 
 ---
 
@@ -70,7 +56,7 @@ Before you begin, ensure you have the following:
 
 If you downloaded the **standalone executable**:
 
-1.  **Download** the latest version from the [Releases](https://github.com/Manumarzo/AudioTTo/releases) page.
+1.  **Download** the latest version from the [Releases](https://github.com/SakshiPatil06032005/AudioTTo-main/page.
 2.  **Prerequisites**: You still need a working **LaTeX distribution** installed (see Prerequisites above).
 3.  **Run**:
     - **Windows**: Double-click `AudioTTo.exe`.
