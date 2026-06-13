@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="logo/logo_audiotto_nobg.png" alt="AudioTTo Logo" width="200"/>
-</p>
 
 <h1 align="center">AudioTTo</h1>
 
@@ -158,9 +155,6 @@ output/
 
 Contributions are welcome! Feel free to open issues or submit pull requests to improve AudioTTo.
 
-## 📄 License
-
-This project is licensed under the **MIT License**.
 
 ---
 
