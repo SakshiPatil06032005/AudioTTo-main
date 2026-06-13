@@ -1,22 +1,4 @@
 
-<h1 align="center">AudioTTo</h1>
-
-<p align="center">
-  <b>Audio Transcription, Slide Integration & LaTeX Notes Generation</b>
-</p>
-
-<p align="center">
-  <a href="https://github.com/guillaumekln/faster-whisper"><img src="https://img.shields.io/badge/Transcribed%20by-Faster--Whisper-green" alt="Faster-Whisper"></a>
-  <a href="https://deepmind.google/technologies/gemini/"><img src="https://img.shields.io/badge/AI-Gemini-orange" alt="Gemini AI"></a>
-  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-purple.svg" alt="License: MIT"></a>
-</p>
-
-<p align="center">
-  <i>Transform your audio recordings into structured, professional LaTeX notes instantly.</i>
-</p>
-
----
-
 ## 📖 Overview
 
 **AudioTTo** is a powerful Python application designed to streamline the process of creating study notes. It takes audio recordings (lectures, meetings, etc.) and optionally PDF slides, then uses advanced AI to generate comprehensive LaTeX documents.
