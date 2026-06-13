@@ -158,18 +158,6 @@ output/
 
 Contributions are welcome! Feel free to open issues or submit pull requests to improve AudioTTo.
 
-## 🌟 Star History
-
-<p align="center">
-  <a href="https://star-history.com/#Manumarzo/AudioTTo&Date">
-   <picture>
-     <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Manumarzo/AudioTTo&type=Date&theme=dark" />
-     <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Manumarzo/AudioTTo&type=Date" />
-     <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Manumarzo/AudioTTo&type=Date" />
-   </picture>
-  </a>
-</p>
-
 ## ☕ Support the Project
 
 If you find AudioTTo useful and want to support its development, consider making a small donation! Your support helps keep the project alive and improving.
