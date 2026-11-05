@@ -51,7 +51,10 @@ def resource_path(relative_path):
     return os.path.join(BASE_DIR, relative_path)
 
 # Carica .env usando il percorso assoluto
-load_dotenv(os.path.join(BASE_DIR, ".env"))
+load_dotenv(
+    os.path.join(os.getenv("DATA_DIR", BASE_DIR), ".env"),
+    override=False
+)
 
 
 # Logger Setup
