@@ -267,10 +267,7 @@ def extract_text_from_pdf(pdf_path: str) -> str:
 
 # ---------------- AUDIO FUNCTIONS ----------------
 def create_output_folder(source_path: str, output_root: str = None) -> str:
-
-    base_name = os.path.splitext(
-        os.path.basename(source_path)
-    )[0]
+    base_name = os.path.splitext(os.path.basename(source_path))[0]
 
     root = output_root or os.getenv(
         "OUTPUT_ROOT",
@@ -278,7 +275,6 @@ def create_output_folder(source_path: str, output_root: str = None) -> str:
     )
 
     output_dir = os.path.join(root, base_name)
-
     os.makedirs(output_dir, exist_ok=True)
 
     return output_dir
