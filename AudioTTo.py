@@ -641,7 +641,10 @@ def main(args_list=None):
     if should_transcribe:
         init_whisper_model(cpu_threads=args.threads)
 
-    user_output_root = os.path.join(BASE_DIR, "output")
+    user_output_root = os.getenv(
+    "OUTPUT_ROOT",
+    os.path.join(BASE_DIR, "output")
+)
     if args.user_id:
         user_output_root = os.path.join(user_output_root, str(args.user_id))
 
