@@ -1,12 +1,12 @@
+
 av
 faster-whisper
-websockets
 google-genai
 setuptools
 PyMuPDF
 python-dotenv
 fastapi
-uvicorn
+uvicorn[standard]
 python-multipart
 pydantic
 sqlalchemy
@@ -21,3 +21,4 @@ huggingface-hub
 regex
 numpy
 yt-dlp
+websockets
