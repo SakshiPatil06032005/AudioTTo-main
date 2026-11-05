@@ -1,5 +1,6 @@
 av
 faster-whisper
+websockets
 google-genai
 setuptools
 PyMuPDF
