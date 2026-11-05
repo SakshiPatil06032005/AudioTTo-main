@@ -1,2 +1,31 @@
+[project]
+name = "audiotto"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "av",
+    "faster-whisper",
+    "google-genai",
+    "setuptools",
+    "PyMuPDF",
+    "python-dotenv",
+    "fastapi",
+    "uvicorn",
+    "python-multipart",
+    "pydantic",
+    "sqlalchemy",
+    "passlib[bcrypt]",
+    "bcrypt<5",
+    "python-jose[cryptography]",
+    "tqdm",
+    "requests",
+    "packaging",
+    "filelock",
+    "huggingface-hub",
+    "regex",
+    "numpy",
+    "yt-dlp",
+]
+
 [tool.vercel]
 entrypoint = "gui_app:app"
