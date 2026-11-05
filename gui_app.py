@@ -59,13 +59,37 @@ def get_base_dir():
     return os.path.dirname(os.path.abspath(__file__))
 
 
-BASE_DIR = get_base_dir()
-OUTPUT_ROOT = "/tmp/output"
-TEMP_UPLOADS = "/tmp/temp_uploads"
-ENV_PATH = os.path.join(BASE_DIR, ".env")
 
-load_dotenv(ENV_PATH, override=True)
+BASE_DIR = get_base_dir()
+
+# Persistent storage directory on Render
+DATA_DIR = os.getenv("DATA_DIR", BASE_DIR)
+
+# Store generated PDFs, notes and transcripts
+OUTPUT_ROOT = os.getenv(
+    "OUTPUT_ROOT",
+    os.path.join(DATA_DIR, "output")
+)
+
+# Temporary uploaded audio/video files
+TEMP_UPLOADS = os.getenv(
+    "TEMP_UPLOADS",
+    "/tmp/temp_uploads"
+)
+
+# Persistent settings file
+ENV_PATH = os.path.join(DATA_DIR, ".env")
+
+# Create required directories
+os.makedirs(DATA_DIR, exist_ok=True)
+os.makedirs(OUTPUT_ROOT, exist_ok=True)
+os.makedirs(TEMP_UPLOADS, exist_ok=True)
+
+# Load .env without overwriting Render environment variables
+load_dotenv(ENV_PATH, override=False)
+
 app = FastAPI()
+
 
 
 def resource_path(relative_path):
@@ -222,48 +246,68 @@ class ApiKeyRequest(BaseModel):
     api_key: str
 
 
+
 @app.get("/api/key-status")
 async def key_status(_: User = Depends(get_current_user)):
-    load_dotenv(override=True)
-    return {"is_set": bool(os.getenv("GEMINI_API_KEY"))}
+    load_dotenv(ENV_PATH, override=False)
+
+    return {
+        "is_set": bool(os.getenv("GEMINI_API_KEY"))
+    }
+
 
 
 @app.post("/api/key")
-async def save_key(req: ApiKeyRequest, _: User = Depends(get_current_user)):
+async def save_key(
+    req: ApiKeyRequest,
+    _: User = Depends(get_current_user)
+):
     key = req.api_key.strip()
-    
+
     lines = []
+
     if os.path.exists(ENV_PATH):
         with open(ENV_PATH, "r", encoding="utf-8") as f:
             lines = f.readlines()
 
     new_lines = []
+
     if key == "RESET":
-        # Remove the key from .env to fallback to default
+
         for line in lines:
             if not line.startswith("GEMINI_API_KEY="):
                 new_lines.append(line)
-        if "GEMINI_API_KEY" in os.environ:
-            del os.environ["GEMINI_API_KEY"]
+
+        os.environ.pop("GEMINI_API_KEY", None)
+
     else:
+
         if not key:
-            raise HTTPException(status_code=400, detail="API key cannot be empty")
-            
+            raise HTTPException(
+                status_code=400,
+                detail="API key cannot be empty"
+            )
+
         found = False
+
         for line in lines:
+
             if line.startswith("GEMINI_API_KEY="):
                 new_lines.append(f"GEMINI_API_KEY={key}\n")
                 found = True
             else:
                 new_lines.append(line)
+
         if not found:
             new_lines.append(f"GEMINI_API_KEY={key}\n")
+
         os.environ["GEMINI_API_KEY"] = key
 
     with open(ENV_PATH, "w", encoding="utf-8") as f:
         f.writelines(new_lines)
 
     return {"message": "API key updated"}
+
 
 
 class ThreadConfig(BaseModel):
@@ -391,33 +435,45 @@ async def app_info(_: User = Depends(get_current_user)):
     }
 
 
+
 @app.post("/api/save-threads")
-async def save_threads(cfg: ThreadConfig, _: User = Depends(get_current_user)):
+async def save_threads(
+    cfg: ThreadConfig,
+    _: User = Depends(get_current_user)
+):
     if cfg.threads < 1:
-        raise HTTPException(status_code=400, detail="Threads must be >= 1")
+        raise HTTPException(
+            status_code=400,
+            detail="Threads must be >= 1"
+        )
 
     lines = []
+
     if os.path.exists(ENV_PATH):
         with open(ENV_PATH, "r", encoding="utf-8") as f:
             lines = f.readlines()
 
     found = False
-    out = []
+    updated_lines = []
+
     for line in lines:
+
         if line.startswith("THREADS="):
-            out.append(f"THREADS={cfg.threads}\n")
+            updated_lines.append(f"THREADS={cfg.threads}\n")
             found = True
         else:
-            out.append(line)
+            updated_lines.append(line)
 
     if not found:
-        out.append(f"THREADS={cfg.threads}\n")
+        updated_lines.append(f"THREADS={cfg.threads}\n")
 
     with open(ENV_PATH, "w", encoding="utf-8") as f:
-        f.writelines(out)
+        f.writelines(updated_lines)
 
     os.environ["THREADS"] = str(cfg.threads)
+
     return {"message": "Threads saved"}
+
 
 
 def get_saved_notes_path(user_id: int) -> str:
