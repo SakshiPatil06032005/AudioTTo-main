@@ -60,8 +60,8 @@ def get_base_dir():
 
 
 BASE_DIR = get_base_dir()
-OUTPUT_ROOT = os.path.join(BASE_DIR, "output")
-TEMP_UPLOADS = os.path.join(BASE_DIR, "temp_uploads")
+OUTPUT_ROOT = "/tmp/output"
+TEMP_UPLOADS = "/tmp/temp_uploads"
 ENV_PATH = os.path.join(BASE_DIR, ".env")
 
 load_dotenv(ENV_PATH, override=True)
